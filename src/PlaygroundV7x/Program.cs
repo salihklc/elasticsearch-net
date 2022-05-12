@@ -50,8 +50,8 @@ namespace PlaygroundV7x
 
 
 			var createIndexResponse = await client.Indices.CreateAsync("aa", i => i
-				.Map<Person>(m => m
-					.AutoMap()));
+				.Map<Person>(m => m.Properties(p => p.Boolean(b => b))));
+
 
 
 			var filterResponse = await client.SearchAsync<Person>(s => s

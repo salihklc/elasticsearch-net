@@ -27,7 +27,8 @@ var settings = new ElasticsearchClientSettings(new InMemoryConnection())
 var client = new ElasticsearchClient(settings);
 
 var createIndexResponse = await client.Indices.CreateAsync("aa", i => i
-	.Mappings(_ => { }));
+	.Mappings(m => m.Properties<Person>(p => p.Boolean(b => b.Name(n => n.IsDeleted).NullValue(true).Store(false)))));
+
 
 
 var filterResponse = await client.SearchAsync<Person>(s => s
